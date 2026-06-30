@@ -1,6 +1,7 @@
 package client
 
 import (
+	"os"
 	"os/user"
 
 	osq "github.com/macadmins/osquery-extension/pkg/utils"
@@ -40,9 +41,13 @@ func NewClient(opts ...Option) (Client, error) {
 		}
 		c.CurrentUser = currentUser.Username
 	}
-
+	
 	if c.PlistLocation == "" {
-		c.PlistLocation = "/Users/" + c.CurrentUser + "/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist"
+		homeDir, err := os.UserHomeDir()
+		if err != nil {
+			return c, err
+		}
+		c.PlistLocation = homeDir + "/Library/Preferences/com.apple.LaunchServices/com.apple.launchservices.secure.plist"
 	}
 
 	return c, nil
