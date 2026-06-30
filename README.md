@@ -1,5 +1,8 @@
 # default-browser
 
+> [!NOTE]
+> I forked this repo in hopes of addressing a problem with default-browser v1.0.18: It fails to work when the user’s home directory has been relocated outside the startup volume. See Issue #23 [“default-browser assumes home directory is /Users/<username>, which fails for relocated macOS home directories #23](https://github.com/macadmins/default-browser/issues/23)”
+
 This is a tool that will set the default browser for the current user on a macOS device.
 
 ## Usage
